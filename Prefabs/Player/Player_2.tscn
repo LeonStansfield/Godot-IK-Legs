@@ -1,0 +1,91 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Assets/man.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/Characters/Player/Player.gd" type="Script" id=2]
+
+[sub_resource type="CapsuleShape" id=37]
+radius = 0.26219
+height = 0.666922
+
+[sub_resource type="CapsuleShape" id=38]
+radius = 0.0389975
+height = 0.723273
+
+[sub_resource type="AnimationNodeAnimation" id=46]
+animation = "StandardRun-loop"
+
+[sub_resource type="AnimationNodeAnimation" id=47]
+animation = "idle-loop"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id=41]
+blend_point_0/node = SubResource( 46 )
+blend_point_0/pos = 7.0
+blend_point_1/node = SubResource( 47 )
+blend_point_1/pos = 0.0
+max_space = 10.0
+
+[sub_resource type="AnimationNodeStateMachine" id=42]
+states/BlendSpace1D/node = SubResource( 41 )
+states/BlendSpace1D/position = Vector2( 320, 142 )
+start_node = "BlendSpace1D"
+
+[sub_resource type="AnimationNodeBlendTree" id=45]
+nodes/StateMachine/node = SubResource( 42 )
+nodes/StateMachine/position = Vector2( 100, 140 )
+node_connections = [ "output", 0, "StateMachine" ]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=44]
+
+[node name="Player" type="KinematicBody"]
+script = ExtResource( 2 )
+
+[node name="man" parent="." instance=ExtResource( 1 )]
+
+[node name="BoneAttachment" parent="man/Armature001/Skeleton" index="0"]
+transform = Transform( 0.992917, -0.0672887, -0.0979158, 0.0478307, 0.980812, -0.188996, 0.108753, 0.18297, 0.977076, -8.39352, 157.314, -3.07119 )
+
+[node name="BoneAttachment2" parent="man/Armature001/Skeleton" index="1"]
+transform = Transform( -0.965457, 0.260158, 0.0145429, 0.00663239, -0.0312584, 0.99949, 0.26048, 0.96506, 0.0284532, 17.1564, 0.780309, 12.1192 )
+
+[node name="BoneAttachment3" parent="man/Armature001/Skeleton" index="2"]
+transform = Transform( -0.950324, -0.310792, -0.017078, -0.00636702, -0.0354457, 0.999351, -0.311196, 0.949817, 0.031706, -23.816, 0.786214, 13.7169 )
+
+[node name="Left_foot" parent="man/Armature001/Skeleton" index="5"]
+transform = Transform( -0.964459, 0.215573, 0.1528, 0.0123279, -0.540935, 0.840975, 0.263946, 0.812969, 0.519051, 13.0297, 11.1354, -3.44345 )
+
+[node name="Right_foot" parent="man/Armature001/Skeleton" index="7"]
+transform = Transform( -0.949054, -0.258955, -0.179549, -0.0124404, -0.53856, 0.842495, -0.314866, 0.801807, 0.507902, -18.8371, 11.1409, -1.69916 )
+
+[node name="Target_left" parent="man" index="4"]
+transform = Transform( -0.995705, 0.0839233, -0.0390981, -0.0700844, -0.40728, 0.91061, 0.0604976, 0.90944, 0.411412, 0.177442, 0, 0 )
+
+[node name="Target_right" parent="man" index="5"]
+transform = Transform( -0.996751, -0.00543505, 0.0803656, 0.0717919, -0.512364, 0.855762, 0.0365253, 0.858751, 0.511089, -0.221809, 0, 0 )
+
+[node name="Interpolation_left" parent="man" index="8"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+
+[node name="Interpolation_right" parent="man" index="9"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.16246, -0.0506245 )
+shape = SubResource( 37 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.402681, -0.0506245 )
+shape = SubResource( 38 )
+
+[node name="CameraRig" type="Position3D" parent="."]
+
+[node name="Camera" type="Camera" parent="CameraRig"]
+transform = Transform( 1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, -0.495069, 2.31589, 2.62097 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 45 )
+anim_player = NodePath("../man/AnimationPlayer")
+active = true
+parameters/StateMachine/playback = SubResource( 44 )
+parameters/StateMachine/BlendSpace1D/blend_position = -0.00100911
+
+[editable path="man"]

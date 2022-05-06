@@ -1,0 +1,192 @@
+[gd_scene load_steps=21 format=2]
+
+[ext_resource path="res://Scripts/Characters/Player/Player.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Player/mixamo.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/Player/Anims/PlayerRunningBackward-loop.tres" type="Animation" id=3]
+[ext_resource path="res://Assets/Player/Anims/PlayerWalkingBackward-loop.tres" type="Animation" id=4]
+[ext_resource path="res://Assets/Player/Anims/PlayerBreathingIdle-loop.tres" type="Animation" id=5]
+[ext_resource path="res://Assets/Player/Anims/PlayerWalking-loop.tres" type="Animation" id=6]
+[ext_resource path="res://Assets/Player/Anims/PlayerRunning-loop.tres" type="Animation" id=7]
+[ext_resource path="res://Assets/Player/Anims/PlayerRightStrafe-loop.tres" type="Animation" id=8]
+[ext_resource path="res://Assets/Player/Anims/PlayerLeftStrafeWalking-loop.tres" type="Animation" id=9]
+[ext_resource path="res://Assets/Player/Anims/PlayerRightStrafeWalking-loop.tres" type="Animation" id=10]
+[ext_resource path="res://Assets/Player/Anims/PlayerLeftStrafe-loop.tres" type="Animation" id=11]
+[ext_resource path="res://Scripts/Characters/IK.gd" type="Script" id=12]
+
+[sub_resource type="CapsuleShape" id=37]
+radius = 0.36344
+height = 0.882073
+
+[sub_resource type="CapsuleShape" id=2]
+radius = 0.0600685
+height = 0.936041
+
+[sub_resource type="AnimationNodeAnimation" id=38]
+animation = "BreathingIdle-loop"
+
+[sub_resource type="AnimationNodeAnimation" id=39]
+animation = "Running-loop"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id=40]
+blend_point_0/node = SubResource( 38 )
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource( 39 )
+blend_point_1/pos = 9.8
+min_space = 0.0
+max_space = 10.0
+
+[sub_resource type="AnimationNodeStateMachine" id=41]
+states/BlendSpace1D/node = SubResource( 40 )
+states/BlendSpace1D/position = Vector2( 352, 79 )
+start_node = "BlendSpace1D"
+
+[sub_resource type="AnimationNodeBlendTree" id=42]
+graph_offset = Vector2( 0, 101.5 )
+nodes/StateMachine/node = SubResource( 41 )
+nodes/StateMachine/position = Vector2( 100, 160 )
+node_connections = [ "output", 0, "StateMachine" ]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=43]
+
+[node name="Player" type="KinematicBody"]
+script = ExtResource( 1 )
+
+[node name="mixamo" parent="." instance=ExtResource( 2 )]
+transform = Transform( -0.115018, 0, -1.00552e-08, 0, 0.115018, 0, 1.00552e-08, 0, -0.115018, 0, 0, 0 )
+script = ExtResource( 12 )
+
+[node name="Skeleton" parent="mixamo/Node2" index="0"]
+transform = Transform( 1, 0, -7.10543e-15, 0, 1, 0, 7.10543e-15, 0, 1, 0, 0, 0 )
+
+[node name="BoneAttachment" parent="mixamo/Node2/Skeleton" index="0"]
+transform = Transform( 0.994065, -0.0302105, -0.104514, 0.0225549, 0.997027, -0.0736709, 0.106429, 0.0708763, 0.991791, 1.05816, 158.175, 0.0421739 )
+
+[node name="BoneAttachment2" parent="mixamo/Node2/Skeleton" index="1"]
+transform = Transform( 0.994065, -0.0302105, -0.104514, 0.0225549, 0.997027, -0.0736709, 0.106429, 0.0708763, 0.991791, 1.05816, 158.175, 0.0421739 )
+
+[node name="BoneAttachment3" parent="mixamo/Node2/Skeleton" index="2"]
+transform = Transform( 0.994065, -0.0302105, -0.104514, 0.0225549, 0.997027, -0.0736709, 0.106429, 0.0708763, 0.991791, 1.05816, 158.175, 0.0421739 )
+
+[node name="BoneAttachment4" parent="mixamo/Node2/Skeleton" index="3"]
+transform = Transform( -0.701138, 0.365858, -0.612007, -0.505913, -0.8601, 0.0654241, -0.502452, 0.355494, 0.788141, 25.9392, 73.1906, 11.157 )
+
+[node name="BoneAttachment5" parent="mixamo/Node2/Skeleton" index="4"]
+transform = Transform( 0.410312, 0.809575, -0.419801, -0.902436, 0.294153, -0.314773, -0.131347, 0.507999, 0.851284, 22.4566, 79.7527, 13.8077 )
+
+[node name="BoneAttachment6" parent="mixamo/Node2/Skeleton" index="5"]
+transform = Transform( -0.736148, 0.260483, -0.624687, -0.381469, -0.922091, 0.0650386, -0.559077, 0.286177, 0.778162, 24.1997, 74.0262, 13.3248 )
+
+[node name="BoneAttachment7" parent="mixamo/Node2/Skeleton" index="6"]
+transform = Transform( -0.692044, 0.408496, -0.595151, -0.563081, -0.821378, 0.0909804, -0.451679, 0.398081, 0.798447, 26.9435, 73.7055, 9.18299 )
+
+[node name="BoneAttachment8" parent="mixamo/Node2/Skeleton" index="7"]
+transform = Transform( -0.750824, 0.24067, -0.615094, -0.351113, -0.934207, 0.0630617, -0.559448, 0.263316, 0.785928, 27.7152, 75.5678, 5.65088 )
+
+[node name="BoneAttachment9" parent="mixamo/Node2/Skeleton" index="8"]
+transform = Transform( -0.554243, -0.711786, 0.43148, 0.784197, -0.620306, -0.015968, 0.279016, 0.329516, 0.901981, -29.7461, 75.0486, 13.5419 )
+
+[node name="BoneAttachment10" parent="mixamo/Node2/Skeleton" index="9"]
+transform = Transform( 0.495446, -0.739107, 0.456349, 0.866579, 0.456726, -0.201102, -0.0597909, 0.495098, 0.866777, -25.1084, 81.0384, 14.974 )
+
+[node name="BoneAttachment11" parent="mixamo/Node2/Skeleton" index="10"]
+transform = Transform( -0.591976, -0.672846, 0.44367, 0.7564, -0.653872, 0.0176165, 0.27825, 0.346021, 0.896017, -28.7189, 75.8047, 16.3019 )
+
+[node name="BoneAttachment12" parent="mixamo/Node2/Skeleton" index="11"]
+transform = Transform( -0.623204, -0.648303, 0.437402, 0.729992, -0.682885, 0.0279308, 0.280587, 0.336706, 0.898832, -29.9412, 75.4847, 11.3843 )
+
+[node name="BoneAttachment13" parent="mixamo/Node2/Skeleton" index="12"]
+transform = Transform( -0.634404, -0.60946, 0.47549, 0.698763, -0.715183, 0.0156107, 0.330548, 0.342159, 0.879582, -30.3155, 76.3702, 8.2493 )
+
+[node name="BoneAttachment14" parent="mixamo/Node2/Skeleton" index="13"]
+transform = Transform( 0.921797, 0.000717939, -0.387672, -0.000872868, 1, -0.000223547, 0.387671, 0.000544457, 0.921797, -21.847, -0.0674343, 11.0498 )
+
+[node name="BoneAttachment15" parent="mixamo/Node2/Skeleton" index="14"]
+transform = Transform( 0.961382, -0.000614289, 0.275216, 0.00127084, 0.999997, -0.00220733, -0.275214, 0.00247191, 0.96138, 14.1639, -0.0555944, 9.33945 )
+
+[node name="Left_foot" type="BoneAttachment" parent="mixamo/Node2/Skeleton" index="17"]
+transform = Transform( 0.961382, 0.00153638, 0.275212, 0.00127085, 0.999949, -0.0100217, -0.275213, 0.00998449, 0.961331, 10.3422, 10.5623, -2.6049 )
+bone_name = "mixamorigLeftFoot"
+
+[node name="SkeletonIK_left_foot" type="SkeletonIK" parent="mixamo/Node2/Skeleton" index="18"]
+process_priority = 1
+root_bone = "mixamorigLeftUpLeg"
+tip_bone = "mixamorigLeftFoot"
+use_magnet = true
+magnet = Vector3( 0, 0, 100 )
+target_node = NodePath("../../../Target_left")
+
+[node name="Right_foot" type="BoneAttachment" parent="mixamo/Node2/Skeleton" index="19"]
+transform = Transform( 0.921797, 0.000566099, -0.387672, -0.000872914, 0.999999, -0.000615329, 0.387671, 0.000905618, 0.921797, -16.5965, 10.4322, -0.448071 )
+bone_name = "mixamorigRightFoot"
+
+[node name="SkeletonIK_right_foot" type="SkeletonIK" parent="mixamo/Node2/Skeleton" index="20"]
+process_priority = 1
+root_bone = "mixamorigRightUpLeg"
+tip_bone = "mixamorigRightFoot"
+use_magnet = true
+magnet = Vector3( 0, 0, 100 )
+target_node = NodePath("../../../Target_right")
+
+[node name="AnimationPlayer" parent="mixamo" index="1"]
+autoplay = "BreathingIdle-loop"
+anims/BreathingIdle-loop = ExtResource( 5 )
+anims/LeftStrafe-loop = ExtResource( 11 )
+anims/LeftStrafeWalking-loop = ExtResource( 9 )
+anims/RightStrafe-loop = ExtResource( 8 )
+anims/RightStrafeWalking-loop = ExtResource( 10 )
+anims/Running-loop = ExtResource( 7 )
+anims/RunningBackward-loop = ExtResource( 3 )
+anims/Walking-loop = ExtResource( 6 )
+anims/WalkingBackward-loop = ExtResource( 4 )
+
+[node name="no_raycast_pos_l" type="Position3D" parent="mixamo"]
+transform = Transform( 0.112168, 0, 0, 0, 0.112168, 0, 0, 0, 0.112168, 1.1218, 0.0264554, 0.00724244 )
+
+[node name="no_raycast_pos_r" type="Position3D" parent="mixamo"]
+transform = Transform( 0.112168, 0, -1.77636e-15, 0, 0.112168, 0, 1.77636e-15, 0, 0.112168, -1.12156, 0.0264554, 0.00724244 )
+
+[node name="Target_left" type="Position3D" parent="mixamo"]
+transform = Transform( 0.982434, 0, -0.18661, 0, 1, 0, 0.18661, 0, 0.982434, 1.30805, 0, 0.0456218 )
+
+[node name="Target_right" type="Position3D" parent="mixamo"]
+transform = Transform( 0.982434, 0, -0.18661, 0, 1, 0, 0.18661, 0, 0.982434, -1.90068, 0, -0.0175815 )
+
+[node name="RayCast_left" type="RayCast" parent="mixamo"]
+transform = Transform( 1, 0, 4.26326e-14, 0, 1, 0, -4.26326e-14, 0, 1, 1.89956, 2.89192, 3.49307e-08 )
+enabled = true
+cast_to = Vector3( 0, -10, 0 )
+debug_shape_custom_color = Color( 0.741176, 0.741176, 0.741176, 1 )
+
+[node name="RayCast_Right" type="RayCast" parent="mixamo"]
+transform = Transform( 1, 0, 4.26326e-14, 0, 1, 0, -4.26326e-14, 0, 1, -2.14609, 2.89192, -3.18751e-07 )
+enabled = true
+cast_to = Vector3( 0, -10, 0 )
+debug_shape_custom_color = Color( 0.741176, 0.741176, 0.741176, 1 )
+
+[node name="Interpolation_left" type="Position3D" parent="mixamo"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.837543, 0 )
+
+[node name="Interpolation_right" type="Position3D" parent="mixamo"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.51947e-07, 0.831387, -4.0258 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.50742, -0.0506245 )
+shape = SubResource( 37 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.536495, -0.0506245 )
+shape = SubResource( 2 )
+
+[node name="CameraRig" type="Position3D" parent="."]
+
+[node name="Camera" type="Camera" parent="CameraRig"]
+transform = Transform( 1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, -0.495069, 2.31589, 2.62097 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 42 )
+anim_player = NodePath("../mixamo/AnimationPlayer")
+active = true
+parameters/StateMachine/playback = SubResource( 43 )
+parameters/StateMachine/BlendSpace1D/blend_position = 0.0894188
+
+[editable path="mixamo"]
