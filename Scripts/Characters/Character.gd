@@ -2,7 +2,7 @@ extends KinematicBody
 
 export var speed = 50
 export var friction = 0.85
-export var gravity = 35
+export var gravity = 30
 export var acceleration = 1
 
 var move_direction = Vector3()
