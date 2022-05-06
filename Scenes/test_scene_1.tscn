@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Prefabs/Player/Player_2.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Prefabs/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/Prototype_textures/Vector/texture_06.svg" type="Texture" id=2]
 
 [sub_resource type="SpatialMaterial" id=3]
