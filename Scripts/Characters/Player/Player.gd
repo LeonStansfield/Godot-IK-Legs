@@ -44,5 +44,3 @@ func run(delta):
 	move_direction = move_direction.normalized()
 	
 	vel += move_direction * speed * delta
-
-	#check what input is being pressed and find x and z values and multiply by velocity length

@@ -21,16 +21,10 @@ onready var skeleton = $Armature001/Skeleton
 
 func _ready():
 	#start IK
-	#ik_right.start()
-	#ik_left.start()
+	ik_right.start()
+	ik_left.start()
 	
-	#start physical_skeleton
-	skeleton.physical_bones_start_simulation(mixamorigLeftArm, 
-		mixamorigRightArm, 
-		mixamorigLeftForeArm,
-		mixamorigRightForeArm 
-		mixamorigLeftHand,
-		mixamorigRightHand)
+	#skeleton.physical_bones_start_simulation() #make sure the shoulder physical bones are always set to the translatiopn of the shoulder bones
 
 func update_ik_target_pos(target, raycast, no_raycast_pos, foot_pos, foot_heighy_offset):
 	if raycast.is_colliding(): #if raycast is on ground
