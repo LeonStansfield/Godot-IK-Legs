@@ -669,20 +669,21 @@ tracks/23/keys = {
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
 script = ExtResource( 2 )
 
+[node name="Skeleton" parent="Armature001" index="0"]
+bones/10/bound_children = [ NodePath("BoneAttachment") ]
+bones/34/bound_children = [ NodePath("BoneAttachment2") ]
+bones/42/bound_children = [ NodePath("BoneAttachment3") ]
+
 [node name="BoneAttachment" parent="Armature001/Skeleton" index="0"]
-transform = Transform( 0.999089, -0.0396505, 0.015757, 0.041208, 0.992463, -0.1154, -0.0110631, 0.11595, 0.993185, 3.71497, 142.418, 23.5895 )
+transform = Transform( 0.994103, -0.0357017, -0.102397, 0.0279195, 0.996682, -0.0764515, 0.104786, 0.0731389, 0.991793, 0.912215, 157.879, -2.84121 )
 
 [node name="BoneAttachment2" parent="Armature001/Skeleton" index="1"]
-transform = Transform( -0.996925, 0.00427581, 0.0782503, 0.0780181, -0.0399736, 0.99615, 0.00738731, 0.999192, 0.0395169, 13.9439, 12.9065, 48.1174 )
+transform = Transform( -0.966331, 0.256935, 0.0137606, 0.00649064, -0.0291218, 0.999555, 0.257222, 0.96599, 0.0264736, 17.1286, 0.776389, 12.1292 )
 
 [node name="BoneAttachment3" parent="Armature001/Skeleton" index="2"]
-transform = Transform( -0.969385, -0.0246543, -0.244303, -0.0850629, -0.899618, 0.428312, -0.23034, 0.43598, 0.869979, -10.6492, 11.9899, -72.0913 )
+transform = Transform( -0.947729, -0.318602, -0.0173972, -0.0064022, -0.0355252, 0.999348, -0.319012, 0.947223, 0.0316284, -23.8591, 0.777974, 13.6775 )
 
-[node name="Left_foot" type="BoneAttachment" parent="Armature001/Skeleton" index="5"]
-transform = Transform( -0.996454, -0.0359573, 0.0760766, 0.0834323, -0.539706, 0.837709, 0.0109372, 0.841086, 0.540792, 14.6322, 23.2381, 32.0165 )
-bone_name = "mixamorigLeftFoot"
-
-[node name="SkeletonIK_left_foot" type="SkeletonIK" parent="Armature001/Skeleton" index="6"]
+[node name="SkeletonIK_left_foot" type="SkeletonIK" parent="Armature001/Skeleton" index="5"]
 process_priority = 1
 root_bone = "mixamorigLeftUpLeg"
 tip_bone = "mixamorigLeftFoot"
@@ -690,11 +691,7 @@ use_magnet = true
 magnet = Vector3( 0, 0, 100 )
 target_node = NodePath("../../../Target_left")
 
-[node name="Right_foot" type="BoneAttachment" parent="Armature001/Skeleton" index="7"]
-transform = Transform( -0.967279, 0.120755, -0.223135, -0.0842418, -0.982438, -0.16649, -0.23932, -0.142244, 0.960464, -12.971, 30.8789, -69.3564 )
-bone_name = "mixamorigRightFoot"
-
-[node name="SkeletonIK_right_foot" type="SkeletonIK" parent="Armature001/Skeleton" index="8"]
+[node name="SkeletonIK_right_foot" type="SkeletonIK" parent="Armature001/Skeleton" index="6"]
 process_priority = 1
 root_bone = "mixamorigRightUpLeg"
 tip_bone = "mixamorigRightFoot"
