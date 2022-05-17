@@ -11,8 +11,6 @@ onready var raycast_left = $RayCast_left #raycasts that detect weather player is
 onready var raycast_right  = $RayCast_right
 onready var ik_left = $Armature001/Skeleton/SkeletonIK_left_foot #gets the skeletonIK bones
 onready var ik_right = $Armature001/Skeleton/SkeletonIK_right_foot
-onready var foot_left = $Armature001/Skeleton/Left_foot #gets the feet we apply the skeletonIK to
-onready var foot_right = $Armature001/Skeleton/Right_foot
 onready var no_raycast_pos_l = $no_raycast_pos_l #gets the 
 onready var no_raycast_pos_r = $no_raycast_pos_r
 
@@ -26,7 +24,7 @@ func _ready():
 	
 	#skeleton.physical_bones_start_simulation() #make sure the shoulder physical bones are always set to the translatiopn of the shoulder bones
 
-func update_ik_target_pos(target, raycast, no_raycast_pos, foot_pos, foot_heighy_offset):
+func update_ik_target_pos(target, raycast, no_raycast_pos, foot_heighy_offset):
 	if raycast.is_colliding(): #if raycast is on ground
 		var hit_point = raycast.get_collision_point().y + foot_height_offset #gets Y position of where the ground is.
 		target.global_transform.origin.y = hit_point #sets the target to the y position of the hitpoint
@@ -35,8 +33,8 @@ func update_ik_target_pos(target, raycast, no_raycast_pos, foot_pos, foot_heighy
 
 func _physics_process(_delta):
 	#update target_pos each frame
-	update_ik_target_pos(target_left, raycast_left, no_raycast_pos_l, foot_left, foot_height_offset)
-	update_ik_target_pos(target_right, raycast_right, no_raycast_pos_r, foot_right, foot_height_offset)
+	update_ik_target_pos(target_left, raycast_left, no_raycast_pos_l, foot_height_offset)
+	update_ik_target_pos(target_right, raycast_right, no_raycast_pos_r, foot_height_offset)
 	
 	#update interpolation each frame
 	ik_right.interpolation = clamp($Interpolation_right.transform.origin.y, min_max_interpolation.x, min_max_interpolation.y)
