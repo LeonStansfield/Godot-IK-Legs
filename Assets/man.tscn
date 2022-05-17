@@ -669,11 +669,6 @@ tracks/23/keys = {
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
 script = ExtResource( 2 )
 
-[node name="Skeleton" parent="Armature001" index="0"]
-bones/10/bound_children = [ NodePath("BoneAttachment") ]
-bones/34/bound_children = [ NodePath("BoneAttachment2") ]
-bones/42/bound_children = [ NodePath("BoneAttachment3") ]
-
 [node name="BoneAttachment" parent="Armature001/Skeleton" index="0"]
 transform = Transform( 0.994103, -0.0357017, -0.102397, 0.0279195, 0.996682, -0.0764515, 0.104786, 0.0731389, 0.991793, 0.912215, 157.879, -2.84121 )
 
