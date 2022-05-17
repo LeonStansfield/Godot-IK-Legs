@@ -10,7 +10,7 @@ config_version=4
 
 [application]
 
-config/name="semi-procedural-animation"
+config/name="Godot_IK_Legs"
 run/main_scene="res://Scenes/test_scene_1.tscn"
 config/icon="res://icon.png"
 
